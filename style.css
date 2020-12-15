@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
+
+.heading--text{
+display: flex;
+justify-content: center;
+padding: 3em 0em 0em 0em;
+font-family: Langar;
+font-size: 3em;
+color: white;
+}
+
+
+
+.ul-elem {
+    
+    padding: 0em 2em;
+    text-align: center;
+    font-family: Langar;
+    color: white;
+    font-size: 2em;
+    border: 1px solid white;
+    margin: 2em 0em;
+    
+}
+
+.tablez{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+}
+
+
+.form{
+    display: flex;
+    padding: 140px 140px;
+    
+}
+
+
+body {
+    min-height: 100vh;
+    background-image: url('https://cdn.pixabay.com/photo/2016/11/18/16/49/books-1835753_960_720.jpg');
+    background-size: cover;
+    
+}
+
+.line-through{
+    text-decoration: line-through;
+    color: rgb(73, 105, 66);
+}
+
+.adding{
+display: flex;
+justify-content: center;
+}
