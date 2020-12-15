@@ -12,7 +12,8 @@ color: white;
 
 
 .ul-elem {
-    
+    display: flex;
+    flex-direction: column;
     padding: 0em 2em;
     text-align: center;
     font-family: Langar;

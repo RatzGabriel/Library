@@ -31,11 +31,15 @@ add.addEventListener('click',function(e){
                 // Button Finish
                 const btnFin = document.createElement('button');
                 btnFin.innerText="Finished"
+                btnFin.classList.add('button');
+                btnFin.classList.add('is-dark')
                     btnFin.addEventListener('click',function(e){
                     btnFin.parentElement.classList.toggle('line-through');
                      });
                 //Button Remove
                 const btnRem = document.createElement('button');
+                btnRem.classList.add('button');
+                btnRem.classList.add('is-dark');
                 btnRem.innerText="Remove"
                 btnRem.addEventListener('click',function(e){
                     e.preventDefault();
@@ -52,7 +56,7 @@ add.addEventListener('click',function(e){
                             ulElem.appendChild(liEle);
                             ulElem.appendChild(btnRem);
                             ulElem.appendChild(btnFin);
-                    table.appendChild(ulElem);
+                            table.appendChild(ulElem);
                                 break;
                         case "author":
                             liEle = document.createElement('li');
@@ -60,7 +64,7 @@ add.addEventListener('click',function(e){
                             ulElem.appendChild(liEle);
                             ulElem.appendChild(btnRem);
                             ulElem.appendChild(btnFin);
-                    table.appendChild(ulElem);
+                            table.appendChild(ulElem);
                                     break;
                         case "pages":
                             liEle = document.createElement('li');
@@ -68,7 +72,7 @@ add.addEventListener('click',function(e){
                             ulElem.appendChild(liEle);
                             ulElem.appendChild(btnRem);
                             ulElem.appendChild(btnFin);
-                    table.appendChild(ulElem);
+                            table.appendChild(ulElem);
                                         break;
                         case "completed":
                             liEle = document.createElement('li');
@@ -76,24 +80,9 @@ add.addEventListener('click',function(e){
                             ulElem.appendChild(liEle);
                             ulElem.appendChild(btnRem);
                             ulElem.appendChild(btnFin);
-                    table.appendChild(ulElem);
+                            table.appendChild(ulElem);
                             break;
-
-
                     }
-
-                    // if(j == "image"){
-                    //     return
-                    // }
-                    // else {
-                    // liEle = document.createElement('li');
-                    // liEle.innerText = myLibrary[i][j];
-                    // ulElem.appendChild(liEle);
-                    // }
-                    // ulElem.appendChild(btnRem)
-                    // ulElem.appendChild(btnFin)
-                    // table.appendChild(ulElem)
-                   
         } const imageEl = document.createElement('img');
         imageEl.src=myLibrary[i].image;
         ulElem.appendChild(imageEl);
