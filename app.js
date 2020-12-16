@@ -5,8 +5,11 @@ const pages = document.getElementById('pages');
 const completed = document.getElementById('completed');
 const image = document.getElementById('img-url');
 const table = document.querySelector('.tablez');
+const y = ["button", "is-dark"];
+
 
 let myLibrary = [];
+
 //class Book
 function Book(title,author,pages,completed,image){
     this.title = title;
@@ -14,6 +17,7 @@ function Book(title,author,pages,completed,image){
     this.pages = pages;
     this.completed = completed;
     this.image = image;
+    
     
 }
 
@@ -31,25 +35,26 @@ add.addEventListener('click',function(e){
                 // Button Finish
                 const btnFin = document.createElement('button');
                 btnFin.innerText="Finished"
-                btnFin.classList.add('button');
-                btnFin.classList.add('is-dark')
+                btnFin.classList.add(...y);
+                
                     btnFin.addEventListener('click',function(e){
                     btnFin.parentElement.classList.toggle('line-through');
                      });
                 //Button Remove
                 const btnRem = document.createElement('button');
-                btnRem.classList.add('button');
-                btnRem.classList.add('is-dark');
-                btnRem.innerText="Remove"
+                btnRem.innerText="Remove";
+                btnRem.classList.add(...y);
+                
                 btnRem.addEventListener('click',function(e){
                     e.preventDefault();
+                    btnRem.parentElement.remove();
                     
                 })
                 //Library Obejcts Loop
                 for(let j in myLibrary[i]){
                     switch(j) {
                         case "image":
-                            break;
+                                break;
                         case "title":
                             liEle = document.createElement('li');
                             liEle.innerText = "Title:"+myLibrary[i][j];
@@ -65,7 +70,7 @@ add.addEventListener('click',function(e){
                             ulElem.appendChild(btnRem);
                             ulElem.appendChild(btnFin);
                             table.appendChild(ulElem);
-                                    break;
+                                break;
                         case "pages":
                             liEle = document.createElement('li');
                             liEle.innerText = "Pages: "+myLibrary[i][j];
@@ -73,7 +78,7 @@ add.addEventListener('click',function(e){
                             ulElem.appendChild(btnRem);
                             ulElem.appendChild(btnFin);
                             table.appendChild(ulElem);
-                                        break;
+                                break;
                         case "completed":
                             liEle = document.createElement('li');
                             liEle.innerText = "Pages read: "+myLibrary[i][j];
@@ -81,11 +86,20 @@ add.addEventListener('click',function(e){
                             ulElem.appendChild(btnRem);
                             ulElem.appendChild(btnFin);
                             table.appendChild(ulElem);
-                            break;
+                                break;
                     }
-        } const imageEl = document.createElement('img');
+        } 
+        //adding image
+        const imageEl = document.createElement('img');
+        if(!myLibrary[i].image){
+            imageEl.src="image/photo-1547555999-14e818e09e33.jpeg";
+            ulElem.appendChild(imageEl);
+        }else{
         imageEl.src=myLibrary[i].image;
         ulElem.appendChild(imageEl);
+    }
+        
+
         }})
 
 

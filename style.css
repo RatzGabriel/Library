@@ -1,5 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
 
+
+
+
+
+@media screen and (max-width: 600px) {
+    .form{
+        flex-wrap: wrap;
+    }
+    .is-info{
+        min-width: 100px;
+        
+    }
+}
+
+
+
+
 .heading--text{
 display: flex;
 justify-content: center;
@@ -14,13 +31,13 @@ color: white;
 .ul-elem {
     display: flex;
     flex-direction: column;
-    padding: 0em 2em;
+    padding: 1em 2em;
     text-align: center;
     font-family: Langar;
     color: white;
     font-size: 2em;
     border: 1px solid white;
-    margin: 2em 0em;
+    margin: 1em 0em;
     
 }
 
@@ -35,8 +52,7 @@ color: white;
 .form{
     display: flex;
     padding: 140px 140px;
-    
-}
+    }
 
 
 body {
