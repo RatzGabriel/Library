@@ -92,7 +92,7 @@ add.addEventListener('click',function(e){
         //adding image
         const imageEl = document.createElement('img');
         if(!myLibrary[i].image){
-            imageEl.src="image/photo-1547555999-14e818e09e33.jpeg";
+            imageEl.src="image/book.jpeg";
             ulElem.appendChild(imageEl);
         }else{
         imageEl.src=myLibrary[i].image;

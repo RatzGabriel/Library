@@ -38,6 +38,8 @@ color: white;
     font-size: 2em;
     border: 1px solid white;
     margin: 1em 0em;
+    max-width: 300px;
+    max-height: 600px;
     
 }
 
