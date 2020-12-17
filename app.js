@@ -16,18 +16,15 @@
 // clear/reset values of all inputs
 // switch statement   class for Book and use the default constructor function
 // You can make the switch a function and call it with a different argument (book,author...)
+
+
 const classes = ["form-items", "input", "is-info"]
 const insertForm = document.querySelector('.insertForm')
-// const add = document.getElementById('add');
-// const title = document.getElementById('title');
-// const author = document.getElementById('author');
-// const pages = document.getElementById('pages');
-// const completed = document.getElementById('completed');
-// const image = document.getElementById('img-url');
 const table = document.querySelector('.tablez');
-const y = ["button", "is-dark"];
+const buttonClass = ["button", "is-dark"];
 const addBtn = document.getElementById('addBtn');
 let myLibrary = [];
+
 //class Book
 function Book(title,author,pages,completed,image){
     this.title = title;
@@ -39,26 +36,33 @@ function Book(title,author,pages,completed,image){
     
 }
 let i=0;
-let testitbaby = []
+
+
 addBtn.addEventListener('click',function(){
     createForm();
-    add.addEventListener('click',function(){
+    addBtn.style.display="none";
+    add.addEventListener('click',function(e){
+        e.preventDefault();
+        
         const title = document.getElementById('title');
         const author = document.getElementById('author');
         const pages = document.getElementById('pages');
         const completed = document.getElementById('completed');
         const image = document.getElementById('img-url');
-         createEl(title,author,pages,completed,image);
-  
+        
+      
+        createEl(title,author,pages,completed,image);
+        addBtn.style.display="inline"
+        
     
     
 })});
 
 
 // add.addEventListener('click',function(e){
-    function createEl(){
-        console.log(title.value)
-        let addIt = new Book(title.value,author.value,pages.value,completed.value,);
+    function createEl(title,author,pages,completed,image){
+        
+        let addIt = new Book(title.value,author.value,pages.value,completed.value,image.value);
             myLibrary.push(addIt);
             // Library Array loop
             for(i;i < myLibrary.length;i++){
@@ -68,7 +72,7 @@ addBtn.addEventListener('click',function(){
                 // Button Finish
                 const btnFin = document.createElement('button');
                 btnFin.innerText="Finished"
-                btnFin.classList.add(...y);
+                btnFin.classList.add(...buttonClass);
                 
                     btnFin.addEventListener('click',function(e){
                     btnFin.parentElement.classList.toggle('line-through');
@@ -76,7 +80,7 @@ addBtn.addEventListener('click',function(){
                 //Button Remove
                 const btnRem = document.createElement('button');
                 btnRem.innerText="Remove";
-                btnRem.classList.add(...y);
+                btnRem.classList.add(...buttonClass);
                 
                 btnRem.addEventListener('click',function(e){
                     e.preventDefault();
@@ -85,7 +89,7 @@ addBtn.addEventListener('click',function(){
                 })
                 //Library Obejcts Loop
                 for(let j in myLibrary[i]){
-                    
+                    // check if input is a number
                     var regex = /^[a-zA-Z]+$/;
                     if(j==="pages" && myLibrary[i][j].match(regex) || j==="completed" && myLibrary[i][j].match(regex) ){
                         alert('please enter a number as value for Pages and also for completed')
@@ -103,6 +107,7 @@ addBtn.addEventListener('click',function(){
                     }
         } 
         //adding image
+        console.log(myLibrary[i].image)
         const imageEl = document.createElement('img');
         if(!myLibrary[i].image){
             imageEl.src="image/book.jpeg";
@@ -114,7 +119,7 @@ addBtn.addEventListener('click',function(){
         
     title.value = "";
     author.value = "";
-    // image.value = "";
+    image.value = "";
     completed.value = "";
     pages.value = "";
         }};
@@ -136,36 +141,47 @@ function createForm(){
             const getTitle = document.createElement('input');
             getTitle.classList.add(...classes);
             getTitle.setAttribute('id','title');
+            getTitle.setAttribute('placeholder','Title');
             getTitle.setAttribute('name','title');
             getTitle.setAttribute('type','text');
-            console.log(getTitle)
+            
             const getAuthor = document.createElement('input');
             getAuthor.classList.add(...classes);
             getAuthor.setAttribute('id','author');
             getAuthor.setAttribute('name','author');
             getAuthor.setAttribute('type','text');
+            getAuthor.setAttribute('placeholder','Author');
+
             const getPages = document.createElement('input');
             getPages.classList.add(...classes);
             getPages.setAttribute('id','pages');
             getPages.setAttribute('name','pages');
             getPages.setAttribute('type','text');
+            getPages.setAttribute('placeholder','Nr or Pages');
+
+
             const getCompleted = document.createElement('input');
             getCompleted.classList.add(...classes);
             getCompleted.setAttribute('id','completed');
             getCompleted.setAttribute('name','completed');
             getCompleted.setAttribute('type','text');
+            getCompleted.setAttribute('placeholder','Pages read');
+
             const getImage = document.createElement('input');
             getImage.classList.add(...classes);
             getImage.setAttribute('id','img-url');
             getImage.setAttribute('name','img-url');
             getImage.setAttribute('type','text')
+            getImage.setAttribute('placeholder','link to an book image');
+            
+
             labelz.appendChild(getTitle);
             labelz.appendChild(getAuthor);
             labelz.appendChild(getPages);
             labelz.appendChild(getCompleted);
             labelz.appendChild(getImage);
-            console.log(form);
+            labelz.appendChild(add);
             insertForm.appendChild(form);
-            insertForm.appendChild(add);
+            
             
 }

@@ -54,6 +54,10 @@ color: white;
 .form{
     display: flex;
     padding: 140px 140px;
+    flex-direction: column;
+    width: 500px;
+    justify-content: space-around;
+    
     }
 
 
@@ -72,4 +76,19 @@ body {
 .adding{
 display: flex;
 justify-content: center;
+}
+
+
+.insertForm{
+    display: flex;
+    justify-content: space-around;
+}
+
+#addBtn{
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.form-items{
+    
 }
