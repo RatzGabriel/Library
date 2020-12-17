@@ -1,21 +1,15 @@
-// @Gabriel84 Hello, congrats on completing the project. I like that you are able to add a photo of the book
-//  as well as how many pages you've already read. You can make a form which pops up whenever a button is clicked 
-//  (the form will take the information about the book). One problem I found is that I can submit empty books and I
-//   can write letters on the pages input. About the code I would split some of it's part it into different functions so it's 
-//   easier to maintain, upgrade and also can be reused. Also when I click the remove button I remove the book from the screen
-//    but not from the array (myLibrary) which can cause headaches when implementing  localStorage.
-//    Also when a book is submited it will be nice to clear/reset the value of all inputs.
-//    For me I'll say using a switch statement wasn't really the best approach (In my opinion) as it makes the code a bit less readable.
-// You could have used a class for Book and use the default constructor function as that is more optimized by the engine,
-// S460heute um 13:46 Uhr
-// I agree. You can make the switch a function and call it with a different argument (book,author...)
-// form which pops up when a button is clicked. (the form will take the information about the book)
-// I can submit empty books and I can write letters on the pages input.
-// I would split some code into different functions
-// when clicking remove, it removes it from screen but not from array
-// clear/reset values of all inputs
-// switch statement   class for Book and use the default constructor function
-// You can make the switch a function and call it with a different argument (book,author...)
+
+
+
+// 17.12.2020
+// added createForm function,added createEl Function,
+// added reset/delete values after clicking
+// added when values are missing alert comes up
+// added can not enter letters in number input field
+// removed switch statement and added loop
+
+// missing : clicking remove button should remove opjectitem from array
+// missing: local storage
 
 
 const classes = ["form-items", "input", "is-info"]
@@ -23,6 +17,7 @@ const insertForm = document.querySelector('.insertForm')
 const table = document.querySelector('.tablez');
 const buttonClass = ["button", "is-dark"];
 const addBtn = document.getElementById('addBtn');
+
 let myLibrary = [];
 
 //class Book
@@ -39,28 +34,34 @@ let i=0;
 
 
 addBtn.addEventListener('click',function(){
-    createForm();
-    addBtn.style.display="none";
-    add.addEventListener('click',function(e){
-        e.preventDefault();
-        
-        const title = document.getElementById('title');
-        const author = document.getElementById('author');
-        const pages = document.getElementById('pages');
-        const completed = document.getElementById('completed');
-        const image = document.getElementById('img-url');
-        
-      
-        createEl(title,author,pages,completed,image);
-        addBtn.style.display="inline"
-        
+
+ createForm();
+
+addBtn.style.display="none";
+
+        add.addEventListener('click',function(e){
+            e.preventDefault();
+            const title = document.getElementById('title');
+            const author = document.getElementById('author');
+            const pages = document.getElementById('pages');
+            const completed = document.getElementById('completed');
+            const image = document.getElementById('img-url');
+            //checks if an input is missing
+            if(!title.value||!author.value||!pages.value||!completed.value){
+                alert('please input all values')
+            }
+            
+            else{
+             createEl(title,author,pages,completed,image);
+            addBtn.style.display="inline"
+    }
     
     
 })});
 
 
-// add.addEventListener('click',function(e){
-    function createEl(title,author,pages,completed,image){
+
+function createEl(title,author,pages,completed,image){
         
         let addIt = new Book(title.value,author.value,pages.value,completed.value,image.value);
             myLibrary.push(addIt);
@@ -76,7 +77,7 @@ addBtn.addEventListener('click',function(){
                 
                     btnFin.addEventListener('click',function(e){
                     btnFin.parentElement.classList.toggle('line-through');
-                     });
+                });
                 //Button Remove
                 const btnRem = document.createElement('button');
                 btnRem.innerText="Remove";
@@ -84,6 +85,7 @@ addBtn.addEventListener('click',function(){
                 
                 btnRem.addEventListener('click',function(e){
                     e.preventDefault();
+
                     btnRem.parentElement.remove();
                     
                 })
@@ -109,6 +111,7 @@ addBtn.addEventListener('click',function(){
         //adding image
         console.log(myLibrary[i].image)
         const imageEl = document.createElement('img');
+        //if book image url is missing add cusom book image
         if(!myLibrary[i].image){
             imageEl.src="image/book.jpeg";
             ulElem.appendChild(imageEl);
@@ -116,18 +119,19 @@ addBtn.addEventListener('click',function(){
         imageEl.src=myLibrary[i].image;
         ulElem.appendChild(imageEl);
     }
-        
+    // remove values from form after submitting a book
     title.value = "";
     author.value = "";
     image.value = "";
     completed.value = "";
     pages.value = "";
-        }};
-        ;
+        }
+};
+        
+// You can make the switch a function and call it with a different argument (book,author...)
 
 
-
-
+// create the form element
 function createForm(){
             const form = document.createElement('form');
             form.action=''
@@ -185,3 +189,4 @@ function createForm(){
             
             
 }
+
