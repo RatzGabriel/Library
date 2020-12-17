@@ -1,12 +1,9 @@
-
-
-
 // 17.12.2020
 // added createForm function,added createEl Function,
 // added reset/delete values after clicking
 // added when values are missing alert comes up
 // added can not enter letters in number input field
-// removed switch statement and added loop
+// removed switch statement and added if else if statement
 
 // missing : clicking remove button should remove opjectitem from array
 // missing: local storage
@@ -20,6 +17,7 @@ const addBtn = document.getElementById('addBtn');
 
 let myLibrary = [];
 
+
 //class Book
 function Book(title,author,pages,completed,image){
     this.title = title;
@@ -30,7 +28,8 @@ function Book(title,author,pages,completed,image){
     
     
 }
-let i=0;
+
+
 
 
 addBtn.addEventListener('click',function(){
@@ -60,7 +59,7 @@ addBtn.style.display="none";
 })});
 
 
-
+let i=0;
 function createEl(title,author,pages,completed,image){
         
         let addIt = new Book(title.value,author.value,pages.value,completed.value,image.value);
@@ -78,20 +77,20 @@ function createEl(title,author,pages,completed,image){
                     btnFin.addEventListener('click',function(e){
                     btnFin.parentElement.classList.toggle('line-through');
                 });
-                //Button Remove
+                //Button Remove - still trying to remove the item from the array
                 const btnRem = document.createElement('button');
                 btnRem.innerText="Remove";
                 btnRem.classList.add(...buttonClass);
                 
-                btnRem.addEventListener('click',function(e){
+                                btnRem.addEventListener('click',function(e){
                     e.preventDefault();
-
+                    console.log(this.parentElement.firstElementChild.title)
                     btnRem.parentElement.remove();
                     
                 })
                 //Library Obejcts Loop
                 for(let j in myLibrary[i]){
-                    // check if input is a number
+                    // check if input is a number or a letter
                     var regex = /^[a-zA-Z]+$/;
                     if(j==="pages" && myLibrary[i][j].match(regex) || j==="completed" && myLibrary[i][j].match(regex) ){
                         alert('please enter a number as value for Pages and also for completed')
@@ -128,10 +127,10 @@ function createEl(title,author,pages,completed,image){
         }
 };
         
-// You can make the switch a function and call it with a different argument (book,author...)
 
 
-// create the form element
+
+// create the form element function
 function createForm(){
             const form = document.createElement('form');
             form.action=''
@@ -141,43 +140,44 @@ function createForm(){
             
             add.innerText="add Book";
             labelz.classList.add('form');
-            form.appendChild(labelz)
+            form.appendChild(labelz);
+
             const getTitle = document.createElement('input');
-            getTitle.classList.add(...classes);
-            getTitle.setAttribute('id','title');
-            getTitle.setAttribute('placeholder','Title');
-            getTitle.setAttribute('name','title');
-            getTitle.setAttribute('type','text');
+                getTitle.classList.add(...classes);
+                getTitle.setAttribute('id','title');
+                getTitle.setAttribute('placeholder','title');
+                getTitle.setAttribute('name','title');
+                getTitle.setAttribute('type','text');
             
             const getAuthor = document.createElement('input');
-            getAuthor.classList.add(...classes);
-            getAuthor.setAttribute('id','author');
-            getAuthor.setAttribute('name','author');
-            getAuthor.setAttribute('type','text');
-            getAuthor.setAttribute('placeholder','Author');
+                getAuthor.classList.add(...classes);
+                getAuthor.setAttribute('id','author');
+                getAuthor.setAttribute('name','author');
+                getAuthor.setAttribute('type','text');
+                getAuthor.setAttribute('placeholder','Author');
 
             const getPages = document.createElement('input');
-            getPages.classList.add(...classes);
-            getPages.setAttribute('id','pages');
-            getPages.setAttribute('name','pages');
-            getPages.setAttribute('type','text');
-            getPages.setAttribute('placeholder','Nr or Pages');
+                getPages.classList.add(...classes);
+                getPages.setAttribute('id','pages');
+                getPages.setAttribute('name','pages');
+                getPages.setAttribute('type','text');
+                getPages.setAttribute('placeholder','Nr or Pages');
 
 
             const getCompleted = document.createElement('input');
-            getCompleted.classList.add(...classes);
-            getCompleted.setAttribute('id','completed');
-            getCompleted.setAttribute('name','completed');
-            getCompleted.setAttribute('type','text');
-            getCompleted.setAttribute('placeholder','Pages read');
+                getCompleted.classList.add(...classes);
+                getCompleted.setAttribute('id','completed');
+                getCompleted.setAttribute('name','completed');
+                getCompleted.setAttribute('type','text');
+                getCompleted.setAttribute('placeholder','Pages read');
 
             const getImage = document.createElement('input');
-            getImage.classList.add(...classes);
-            getImage.setAttribute('id','img-url');
-            getImage.setAttribute('name','img-url');
-            getImage.setAttribute('type','text')
-            getImage.setAttribute('placeholder','link to an book image');
-            
+                getImage.classList.add(...classes);
+                getImage.setAttribute('id','img-url');
+                getImage.setAttribute('name','img-url');
+                getImage.setAttribute('type','text')
+                getImage.setAttribute('placeholder','link to an book image');
+                
 
             labelz.appendChild(getTitle);
             labelz.appendChild(getAuthor);
