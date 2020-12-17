@@ -1,15 +1,33 @@
-const add = document.getElementById('add');
-const title = document.getElementById('title');
-const author = document.getElementById('author');
-const pages = document.getElementById('pages');
-const completed = document.getElementById('completed');
-const image = document.getElementById('img-url');
+// @Gabriel84 Hello, congrats on completing the project. I like that you are able to add a photo of the book
+//  as well as how many pages you've already read. You can make a form which pops up whenever a button is clicked 
+//  (the form will take the information about the book). One problem I found is that I can submit empty books and I
+//   can write letters on the pages input. About the code I would split some of it's part it into different functions so it's 
+//   easier to maintain, upgrade and also can be reused. Also when I click the remove button I remove the book from the screen
+//    but not from the array (myLibrary) which can cause headaches when implementing  localStorage.
+//    Also when a book is submited it will be nice to clear/reset the value of all inputs.
+//    For me I'll say using a switch statement wasn't really the best approach (In my opinion) as it makes the code a bit less readable.
+// You could have used a class for Book and use the default constructor function as that is more optimized by the engine,
+// S460heute um 13:46 Uhr
+// I agree. You can make the switch a function and call it with a different argument (book,author...)
+// form which pops up when a button is clicked. (the form will take the information about the book)
+// I can submit empty books and I can write letters on the pages input.
+// I would split some code into different functions
+// when clicking remove, it removes it from screen but not from array
+// clear/reset values of all inputs
+// switch statement   class for Book and use the default constructor function
+// You can make the switch a function and call it with a different argument (book,author...)
+const classes = ["form-items", "input", "is-info"]
+const insertForm = document.querySelector('.insertForm')
+// const add = document.getElementById('add');
+// const title = document.getElementById('title');
+// const author = document.getElementById('author');
+// const pages = document.getElementById('pages');
+// const completed = document.getElementById('completed');
+// const image = document.getElementById('img-url');
 const table = document.querySelector('.tablez');
 const y = ["button", "is-dark"];
-
-
+const addBtn = document.getElementById('addBtn');
 let myLibrary = [];
-
 //class Book
 function Book(title,author,pages,completed,image){
     this.title = title;
@@ -20,12 +38,27 @@ function Book(title,author,pages,completed,image){
     
     
 }
-
 let i=0;
+let testitbaby = []
+addBtn.addEventListener('click',function(){
+    createForm();
+    add.addEventListener('click',function(){
+        const title = document.getElementById('title');
+        const author = document.getElementById('author');
+        const pages = document.getElementById('pages');
+        const completed = document.getElementById('completed');
+        const image = document.getElementById('img-url');
+         createEl(title,author,pages,completed,image);
+  
+    
+    
+})});
 
-add.addEventListener('click',function(e){
-        e.preventDefault();
-        let addIt = new Book(title.value,author.value,pages.value,completed.value,image.value);
+
+// add.addEventListener('click',function(e){
+    function createEl(){
+        console.log(title.value)
+        let addIt = new Book(title.value,author.value,pages.value,completed.value,);
             myLibrary.push(addIt);
             // Library Array loop
             for(i;i < myLibrary.length;i++){
@@ -52,41 +85,21 @@ add.addEventListener('click',function(e){
                 })
                 //Library Obejcts Loop
                 for(let j in myLibrary[i]){
-                    switch(j) {
-                        case "image":
-                                break;
-                        case "title":
-                            liEle = document.createElement('li');
-                            liEle.innerText = "Title:"+myLibrary[i][j];
-                            ulElem.appendChild(liEle);
-                            ulElem.appendChild(btnRem);
-                            ulElem.appendChild(btnFin);
-                            table.appendChild(ulElem);
-                                break;
-                        case "author":
-                            liEle = document.createElement('li');
-                            liEle.innerText = "Author:"+myLibrary[i][j];
-                            ulElem.appendChild(liEle);
-                            ulElem.appendChild(btnRem);
-                            ulElem.appendChild(btnFin);
-                            table.appendChild(ulElem);
-                                break;
-                        case "pages":
-                            liEle = document.createElement('li');
-                            liEle.innerText = "Pages: "+myLibrary[i][j];
-                            ulElem.appendChild(liEle);
-                            ulElem.appendChild(btnRem);
-                            ulElem.appendChild(btnFin);
-                            table.appendChild(ulElem);
-                                break;
-                        case "completed":
-                            liEle = document.createElement('li');
-                            liEle.innerText = "Pages read: "+myLibrary[i][j];
-                            ulElem.appendChild(liEle);
-                            ulElem.appendChild(btnRem);
-                            ulElem.appendChild(btnFin);
-                            table.appendChild(ulElem);
-                                break;
+                    
+                    var regex = /^[a-zA-Z]+$/;
+                    if(j==="pages" && myLibrary[i][j].match(regex) || j==="completed" && myLibrary[i][j].match(regex) ){
+                        alert('please enter a number as value for Pages and also for completed')
+                    }
+                    else if(j==="image"){
+                        ulElem.appendChild(btnRem);
+                        ulElem.appendChild(btnFin);
+                    }
+                    
+                    else{
+                    liEle = document.createElement('li');
+                    liEle.innerText = j+":"+myLibrary[i][j];
+                    ulElem.appendChild(liEle);
+                    table.appendChild(ulElem);
                     }
         } 
         //adding image
@@ -99,8 +112,60 @@ add.addEventListener('click',function(e){
         ulElem.appendChild(imageEl);
     }
         
+    title.value = "";
+    author.value = "";
+    // image.value = "";
+    completed.value = "";
+    pages.value = "";
+        }};
+        ;
 
-        }})
 
 
 
+function createForm(){
+            const form = document.createElement('form');
+            form.action=''
+            const labelz = document.createElement('label');
+            const add = document.createElement('button')
+            add.setAttribute('id','add');
+            
+            add.innerText="add Book";
+            labelz.classList.add('form');
+            form.appendChild(labelz)
+            const getTitle = document.createElement('input');
+            getTitle.classList.add(...classes);
+            getTitle.setAttribute('id','title');
+            getTitle.setAttribute('name','title');
+            getTitle.setAttribute('type','text');
+            console.log(getTitle)
+            const getAuthor = document.createElement('input');
+            getAuthor.classList.add(...classes);
+            getAuthor.setAttribute('id','author');
+            getAuthor.setAttribute('name','author');
+            getAuthor.setAttribute('type','text');
+            const getPages = document.createElement('input');
+            getPages.classList.add(...classes);
+            getPages.setAttribute('id','pages');
+            getPages.setAttribute('name','pages');
+            getPages.setAttribute('type','text');
+            const getCompleted = document.createElement('input');
+            getCompleted.classList.add(...classes);
+            getCompleted.setAttribute('id','completed');
+            getCompleted.setAttribute('name','completed');
+            getCompleted.setAttribute('type','text');
+            const getImage = document.createElement('input');
+            getImage.classList.add(...classes);
+            getImage.setAttribute('id','img-url');
+            getImage.setAttribute('name','img-url');
+            getImage.setAttribute('type','text')
+            labelz.appendChild(getTitle);
+            labelz.appendChild(getAuthor);
+            labelz.appendChild(getPages);
+            labelz.appendChild(getCompleted);
+            labelz.appendChild(getImage);
+            console.log(form);
+            insertForm.appendChild(form);
+            insertForm.appendChild(add);
+            
+}
