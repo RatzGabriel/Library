@@ -1,3 +1,8 @@
+
+
+
+
+
 // missing: local storage
 const insertForm = document.querySelector('.insertForm')
 const cardInput = document.querySelector('.cardInput');
@@ -12,7 +17,7 @@ function Book(title,author,pages,completed,image){
     this.pages = pages;
     this.completed = completed;
     this.image = image;
-    
+    this.value = true;
     
 }
 
@@ -47,7 +52,7 @@ function createEl(title,author,pages,completed,image){
             for(;i < myLibrary.length;i++){
                 
                 ulElem = document.createElement('ul')
-                ulElem.setAttribute('id','test')
+                ulElem.setAttribute('id',i)
                 ulElem.classList.add('ul-elem');
                 
                 
@@ -55,7 +60,13 @@ function createEl(title,author,pages,completed,image){
                 btnFin.innerText="Finished"
                 
                 
-                btnFin.addEventListener('click',function(e){
+            btnFin.addEventListener('click',function(e){
+                console.log(myLibrary[this.parentElement.id])
+                    if(myLibrary[this.parentElement.id].value===true){
+                        myLibrary[this.parentElement.id].value=false
+                    }else{
+                        myLibrary[this.parentElement.id].value=true
+                    }
                     btnFin.parentElement.classList.toggle('line-through');
                 });
 
@@ -63,14 +74,11 @@ function createEl(title,author,pages,completed,image){
                 const btnRem = document.createElement('button');
                 btnRem.innerText="Remove";
                 
-                btnRem.addEventListener('click',function(e){
+            btnRem.addEventListener('click',function(e){
                     e.preventDefault();
+                    let id = this.parentElement.id;
+                    myLibrary.splice(id,1)
                     
-                    let currArrayEle = this.parentElement.firstChild.innerText.slice(6)
-                    
-                    myLibrary = myLibrary.filter(function(returnableObjects){
-                        return returnableObjects.title !== currArrayEle;
-                 });
                  this.parentElement.remove();
                  
                 })
@@ -147,4 +155,3 @@ let cancel = document.querySelector(".cancel")
 
 
 
-   
