@@ -5,23 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"> -->
+    
 </head>
 <body id="body">
 
-    <div class="heading--text">
+    <div class="difoco heading--text">
         <h1>My Library</h1>
     </div>
-    <div class="button">
-        <button id="addBtn">+Add Book</button>
-    </div>
-    <div class="insertForm"></div>
-    <!-- get information -->
-    
-   
-     <!-- put info to table -->
+    <div class="modal-button-add">
+    <button class="modal-button">Click here to add a Book</button>
+</div>
+    <div class="modal">
+        <div class="modal-content">
+            
+            <span class="cancel">&times;</span>
+            <form action="">
+                <label class="form" for="Todos">
+                    <input class="form-items input is-info " name="title" id="title" type="text" placeholder="title">
+                    <input class="form-items input is-info" name="author" id="author" type="text" placeholder="Author">
+                    <input class="form-items input is-info" name="pages" id="pages" type="text" placeholder="Pages">
+                    <input class="form-items input is-info" name="completed" id="completed" type="text" placeholder="Pages completed">
+                    <input class="form-items input is-info" name="img-url" id="img-url" type="text" placeholder="image https://media.wired.com/photo.jpg">
+                </label>
+                <div class="adding">
+                <button id="add" class="button is-info">Add Item</button>
+            </div>
+            </div>
+            </form>
+        </div>
 
-        <div class="tablez"></div>
+    </div>
+   
+
+        <div class="cardInput"></div>
     </div>
 
 

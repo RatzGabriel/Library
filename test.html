@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Modal</title>
+</head>
+<body>
+    <button class="modal-button">CLick here to see the Modal</button>
+    <div class="modal">
+        <div class="modal-content">
+            <h1>Modal Text</h1>
+            <span class="cancel">&times;</span>
+        </div>
+
+    </div>
+</body>
+<style>
+    .modal{
+        position:fixed;
+        left:0;
+        top:0;
+        width:100%;
+        height: 100%;
+        background-color:rgba(0,0,0,0.5);
+        visibility:hidden;
+        opacity: 0;
+    }
+    .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 1rem 1.5rem;
+        width: 24rem;
+        border-radius: 0.5rem;
+    }
+    .cancel{
+        float:right;
+        width:1.5rem;
+        text-align: center;
+        line-height: 1.5rem;
+        cursor:pointer;
+        border-radius:0.25rem;
+        background-color: aliceblue;
+    }
+    .show-modal{
+        opacity:1;
+        visibility: visible;
+        transform: scale(1);
+    }
+</style>
+<script>
+    let btn = document.querySelector(".modal-button");
+    let modal = document.querySelector(".modal");
+    let cancel = document.querySelector(".cancel")
+
+    function toggle() {
+        modal.classList.toggle("show-modal")
+    }
+
+    function windowHandler(ev) {
+        if(ev.target === modal){
+            toggle()
+        }
+    }
+
+    btn.addEventListener("click",toggle);
+    cancel.addEventListener("click", toggle);
+    window.addEventListener("click",windowHandler)
+
+
+</script>
+</html>
