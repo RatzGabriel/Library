@@ -46,9 +46,10 @@ function createEl(title,author,pages,completed,image){
             // Library Array loop
             for(;i < myLibrary.length;i++){
                 
-                ulElem = document.createElement('ul');
+                ulElem = document.createElement('ul')
+                ulElem.setAttribute('id','test')
                 ulElem.classList.add('ul-elem');
-
+                
                 
                 const btnFin = document.createElement('button');
                 btnFin.innerText="Finished"
@@ -100,8 +101,21 @@ function createEl(title,author,pages,completed,image){
             imageEl.src="image/book.jpeg";
             ulElem.appendChild(imageEl);
         }else{
-        imageEl.src=myLibrary[i].image;
-        ulElem.appendChild(imageEl);
+            try{
+                imageEl.src=myLibrary[i].image;
+              
+            }
+            catch (e) {
+                imageEl.src="image/book.jpeg";
+            ulElem.appendChild(imageEl);
+            }
+            finally{
+                imageEl.src="image/book.jpeg";
+            ulElem.appendChild(imageEl);
+            }
+
+
+      
     }
     
     title.value = "";
