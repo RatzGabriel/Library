@@ -93,7 +93,7 @@ justify-content: center;
     line-height: 1.5rem;
     cursor:pointer;
     border-radius:0.25rem;
-    background-color: aliceblue;
+    background-color: rgb(48, 81, 110);
 }
 .show-modal{
     opacity:1;
