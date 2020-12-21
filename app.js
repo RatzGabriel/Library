@@ -3,7 +3,8 @@ const insertForm = document.querySelector('.insertForm')
 const cardInput = document.querySelector('.cardInput');
 const addBtn = document.getElementById('add');
 
-let myLibrary = [];
+
+myLibrary=[]
 
 function Book(title,author,pages,completed,image){
     this.title = title;
@@ -30,6 +31,7 @@ add.addEventListener('click',function(e){
             else{
              createEl(title,author,pages,completed,image);
              toggle();
+             
     }
     
     
@@ -63,15 +65,13 @@ function createEl(title,author,pages,completed,image){
                 btnRem.addEventListener('click',function(e){
                     e.preventDefault();
                     
-                    
-                    
-                    let t = this.parentElement.firstChild.innerText.slice(6)
+                    let currArrayEle = this.parentElement.firstChild.innerText.slice(6)
                     
                     myLibrary = myLibrary.filter(function(returnableObjects){
-                        return returnableObjects.title !== t;
+                        return returnableObjects.title !== currArrayEle;
                  });
                  this.parentElement.remove();
-                    
+                 
                 })
                 
                 for(let j in myLibrary[i]){
@@ -90,6 +90,9 @@ function createEl(title,author,pages,completed,image){
                     liEle.innerText = j+":"+myLibrary[i][j];
                     ulElem.appendChild(liEle);
                     cardInput.appendChild(ulElem);
+                    
+                   
+
                     }
         } 
         const imageEl = document.createElement('img');
@@ -127,3 +130,7 @@ let cancel = document.querySelector(".cancel")
     btn.addEventListener("click",toggle);
     cancel.addEventListener("click", toggle);
     window.addEventListener("click",windowHandler);
+
+
+
+   
