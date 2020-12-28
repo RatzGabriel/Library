@@ -1,7 +1,9 @@
 
 
 
-
+// value : true is in the card
+// image link is not working 
+// ULELEM link not working with img
 
 // missing: local storage
 const insertForm = document.querySelector('.insertForm')
@@ -91,6 +93,8 @@ function createEl(title,author,pages,completed,image){
                     }
                     else if(j==="image"){
                         ulElem.appendChild(btnRem);
+                        
+                    } else if(j==="value"){
                         ulElem.appendChild(btnFin);
                     }
                     
@@ -108,18 +112,24 @@ function createEl(title,author,pages,completed,image){
         if(!myLibrary[i].image){
             imageEl.src="image/book.jpeg";
             ulElem.appendChild(imageEl);
-        }else{
+        }
+        else{
             try{
                 imageEl.src=myLibrary[i].image;
+                ulElem.appendChild(imageEl);
+                
+                
               
             }
-            catch (e) {
-                imageEl.src="image/book.jpeg";
+            catch (err) {
+                alert('test')
+                
             ulElem.appendChild(imageEl);
             }
             finally{
-                imageEl.src="image/book.jpeg";
-            ulElem.appendChild(imageEl);
+                imageEl.src=myLibrary[i].image;
+                
+            
             }
 
 
